@@ -55,11 +55,11 @@ def run_simulation(positions, velocities, angles, num_steps, neighborhood_radius
 
 def visualize_results(positions, angles, box_size):
     # Plot results
-    plt.quiver(positions[:, 0], positions[:, 1], np.cos(angles), np.sin(angles))
-    plt.xlim(0, box_size)
-    plt.ylim(0, box_size)
-    plt.show()
-
+    fig, ax = plt.subplots()
+    ax.quiver(positions[:, 0], positions[:, 1], np.cos(angles), np.sin(angles))
+    ax.set_xlim(0, box_size)
+    ax.set_ylim(0, box_size)
+    return fig, ax
 
 def main(num_particles=100, box_size=10, num_steps=100, neighborhood_radius=1, angle_range=0.1, velocity_magnitude=0.1):
     # Run simulation and visualize results
