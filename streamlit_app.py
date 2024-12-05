@@ -17,4 +17,15 @@ angle_range = st.sidebar.slider("Angle range", 0.01, 0.5, 0.1)
 
 velocity_magnitude = st.sidebar.slider("Velocity magnitude", 0.01, 0.5, 0.1)
 
-positions, velocities, angles = run_vicsek.initialize_positions_and_velocities(num_particles, box_size, velocity_magnitude)
+st.sidebar.header("Run Simulation")
+
+if st.sidebar.button("Run simulation"):
+    positions, velocities, angles = run_vicsek.initialize_positions_and_velocities(num_particles, box_size, velocity_magnitude)
+    result_positions, result_velocities, result_angles = run_vicsek.run_simulation(positions, velocities, angles, num_steps, neighborhood_radius, angle_range, velocity_magnitude, box_size)
+
+st.header("Simulation Results")
+
+step_to_display = st.slider("Step to display", 0, num_steps, 0)
+
+if st.button("Visualize results"):
+    run_vicsek.visualize_results(result_positions[step_to_display], box_size)

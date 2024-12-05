@@ -50,9 +50,9 @@ def run_simulation(positions, velocities, angles, num_steps, neighborhood_radius
 
     return np.array(result_positions), np.array(result_velocities), np.array(result_angles)
 
-def visualize_results(positions, box_size):
+def visualize_results(positions, angles, box_size):
     # Plot results
-    plt.scatter(positions[:, 0], positions[:, 1])
+    plt.quiver(positions[:, 0], positions[:, 1], np.cos(angles), np.sin(angles))
     plt.xlim(0, box_size)
     plt.ylim(0, box_size)
     plt.show()
