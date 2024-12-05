@@ -66,7 +66,7 @@ def main(num_particles=100, box_size=10, num_steps=100, neighborhood_radius=1, a
     positions, velocities, angles = initialize_positions_and_velocities(num_particles, box_size, velocity_magnitude)
     positions, velocities, angles = run_simulation(positions, velocities, angles, num_steps, neighborhood_radius, angle_range, velocity_magnitude, box_size)
     for i in range(num_steps):
-        visualize_results(positions[i], box_size)
+        visualize_results(positions[i], angles[i], box_size)
         plt.pause(0.1)
         plt.clf()
     return positions, velocities, angles

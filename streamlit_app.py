@@ -28,4 +28,4 @@ if st.sidebar.button("Run simulation"):
     step_to_display = st.slider("Step to display", 0, num_steps, 0)
 
     if st.button("Visualize results"):
-        run_vicsek.visualize_results(result_positions[step_to_display], box_size)
+        run_vicsek.visualize_results(result_positions[step_to_display], result_angles[step_to_display], box_size)
