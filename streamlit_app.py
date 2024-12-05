@@ -23,17 +23,17 @@ run_simulation = st.sidebar.toggle("Run simulation", False)
 
 if run_simulation:
     if 'simulation_results' not in st.session_state:
-        positions, velocities, angles = run_vicsek.initialize_positions_and_velocities(num_particles, box_size, velocity_magnitude)
-        result_positions, result_velocities, result_angles = run_vicsek.run_simulation(positions, velocities, angles, num_steps, neighborhood_radius, angle_range, velocity_magnitude, box_size)
-        st.session_state.simulation_results = (result_positions, result_velocities, result_angles)
+        positions, velocities = run_vicsek.initialize_positions_and_velocities(num_particles, box_size, velocity_magnitude)
+        result_positions, result_velocities = run_vicsek.run_simulation(positions, velocities, num_steps, neighborhood_radius, angle_range, velocity_magnitude, box_size)
+        st.session_state.simulation_results = (result_positions, result_velocities)
     else:
-        result_positions, result_velocities, result_angles = st.session_state.simulation_results
+        result_positions, result_velocities = st.session_state.simulation_results
 
     st.header("Simulation Results")
 
     step_to_display = st.slider("Step to display", 0, num_steps, 0)
 
-    fig, ax = run_vicsek.visualize_results(result_positions[step_to_display], result_angles[step_to_display], box_size)
+    fig, ax = run_vicsek.visualize_results(result_positions[step_to_display], result_velocities[step_to_display], box_size)
     st.pyplot(fig)
 else:
     if 'simulation_results' in st.session_state:
