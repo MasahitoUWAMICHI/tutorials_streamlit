@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from tqdm import trange
 
 def initialize_positions_and_velocities(num_particles, box_size, velocity_magnitude):
     # Initialize positions and velocities
@@ -42,11 +43,13 @@ def run_simulation(positions, velocities, angles, num_steps, neighborhood_radius
     result_angles[0] = angles
 
     # Run simulation
-    for step in range(num_steps):
+    for step in trange(num_steps):
         positions, velocities, angles = update_positions_and_velocities(positions, velocities, angles, neighborhood_radius, angle_range, velocity_magnitude, box_size)
         result_positions[step+1] = positions
         result_velocities[step+1] = velocities
         result_angles[step+1] = angles
+
+    print("Simulation complete.")
 
     return np.array(result_positions), np.array(result_velocities), np.array(result_angles)
 
